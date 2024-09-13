@@ -1,5 +1,5 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { ReactComponent as DownArrow } from "../Images/down.svg";
+import { ReactComponent as DownArrow } from "../assets/images/downArrow.svg";
 
 export const DropdownMenu = ({ mainText, header }) => {
   return (

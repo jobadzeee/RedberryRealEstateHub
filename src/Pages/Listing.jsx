@@ -1,12 +1,12 @@
 import React from "react";
-import { ReactComponent as Done } from "../Images/done.svg";
-import { DropdownMenu } from "../Components/DropdownMenu";
-import Form from "../Components/Form";
-import Input from "../Components/Input";
-import Label from "../Components/Label";
-import RadioButton from "../Components/RadioButton";
-import TextArea from "../Components/TextArea";
-import Button from "../Components/Button";
+import { ReactComponent as Done } from "../assets/images/done.svg";
+import { DropdownMenu } from "../components/DropdownMenu";
+import Form from "../components/Form";
+import Input from "../components/Input";
+import Label from "../components/Label";
+import RadioButton from "../components/RadioButton";
+import TextArea from "../components/TextArea";
+import Button from "../components/Button";
 
 const Listing = () => {
   return (

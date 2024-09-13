@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as Logo } from "../Images/LOGO-02 3.svg";
+import { ReactComponent as Logo } from "../assets/images/LOGO-02 3.svg";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {

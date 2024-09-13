@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as ArrowSvg } from "../Images/down.svg";
+import { ReactComponent as ArrowSvg } from "../assets/images/downArrow.svg";
 import Button from "./Button";
 import ListItem from "./ListItem";
 import { NavLink } from "react-router-dom";

@@ -1,9 +1,9 @@
 import React from "react";
-import { properties } from "../Arrays/Properties";
-import { ReactComponent as LocationSvg } from "../Images/icon/heroicons/Solid/location-marker.svg";
-import { ReactComponent as Bed } from "../Images/icon/ionicons/filled/bed.svg";
-import { ReactComponent as Space } from "../Images/space.svg";
-import { ReactComponent as Locate } from "../Images/Locate.svg";
+import { properties } from "../data/Properties";
+import { ReactComponent as LocationSvg } from "../assets/images/location-marker.svg";
+import { ReactComponent as Bed } from "../assets/images/bed.svg";
+import { ReactComponent as Space } from "../assets/images/space.svg";
+import { ReactComponent as Locate } from "../assets/images/Locate.svg";
 
 const PropertyMap = () => {
   console.log(properties);
