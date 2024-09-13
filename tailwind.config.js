@@ -3,7 +3,11 @@ import("tailwindcss").Config;
 module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        custom: "5px 5px 12px 0px #02152614",
+      },
+    },
   },
   plugins: [],
 };

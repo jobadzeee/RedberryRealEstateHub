@@ -2,6 +2,7 @@ import React from "react";
 import { ReactComponent as ArrowSvg } from "../Images/down.svg";
 import Button from "./Button";
 import ListItem from "./ListItem";
+import { NavLink } from "react-router-dom";
 
 const ItemManager = () => {
   return (
@@ -25,7 +26,9 @@ const ItemManager = () => {
         </ListItem>
       </ul>
       <div className="space-x-4">
-        <Button variant="primary" text="+ ლისტინგის დამატება" />
+        <NavLink to="/Listing">
+          <Button variant="primary" text="+ ლისტინგის დამატება" />
+        </NavLink>
         <Button variant="outline" text="+ აგენტის დამატება" />
       </div>
     </div>
