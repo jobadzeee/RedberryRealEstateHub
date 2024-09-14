@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as ArrowSvg } from "../assets/images/downArrow.svg";
 import Button from "./Button";
 import ListItem from "./ListItem";
 import { NavLink } from "react-router-dom";
+import AgentUpload from "./AgentUpload";
 
 const ItemManager = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex justify-between">
       <ul className="flex space-x-6 p-[6px] rounded-[10px] border-[#DBDBDB] border-[1px]">
@@ -29,8 +31,13 @@ const ItemManager = () => {
         <NavLink to="/Listing">
           <Button variant="primary" text="+ ლისტინგის დამატება" />
         </NavLink>
-        <Button variant="outline" text="+ აგენტის დამატება" />
+        <Button
+          variant="outline"
+          onClick={() => setIsOpen(true)}
+          text="+ აგენტის დამატება"
+        />
       </div>
+      <AgentUpload isOpen={isOpen} closeModal={() => setIsOpen(false)} />
     </div>
   );
 };

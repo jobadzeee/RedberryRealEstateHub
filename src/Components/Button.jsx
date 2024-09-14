@@ -6,6 +6,8 @@ const Button = ({ variant, text, onClick }) => {
 
     outline:
       "bg-transparent border-[1px] border-[#F93B1D] font-semibold rounded-[10px] text-[#F93B1D] py-[10px] px-4",
+    outline_gray:
+      "bg-transparent border-[1px] border-[#808A93] font-semibold rounded-[10px] text-[#808A93] py-[10px] px-4",
   };
 
   return (

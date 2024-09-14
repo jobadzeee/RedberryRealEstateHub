@@ -1,12 +1,15 @@
 import React from "react";
 import { ReactComponent as Done } from "../assets/images/done.svg";
-import { DropdownMenu } from "../components/DropdownMenu";
 import Form from "../components/Form";
 import Input from "../components/Input";
 import Label from "../components/Label";
 import RadioButton from "../components/RadioButton";
 import TextArea from "../components/TextArea";
 import Button from "../components/Button";
+import SelectItem from "../components/SelectItems";
+import { regions } from "../data/Regions";
+import { cities } from "../data/Cities";
+import { agents } from "../data/Agents";
 
 const Listing = () => {
   return (
@@ -40,8 +43,8 @@ const Listing = () => {
             </div>
           </div>
           <div className="flex gap-5">
-            <DropdownMenu header="რეგიონი" mainText="კახეთი" />
-            <DropdownMenu header="ქალაქი" mainText="გურჯაანი" />
+            <SelectItem header="რეგიონი" data={regions} />
+            <SelectItem header="ქალაქი" data={cities} />
           </div>
         </div>
         <div className="space-y-5">
@@ -95,11 +98,11 @@ const Listing = () => {
         <div className="space-y-5">
           <p className="text-[16px] font-semibold">აგენტი</p>
           <div className="space-y-[5px]">
-            <DropdownMenu header="აირჩიე" mainText="გაგა გაგაძე" />
+            <SelectItem data={agents} />
           </div>
         </div>
       </Form>
-      <div className="space-x-4 w-full flex justify-end pb-12">
+      <div className="space-x-4 w-full flex justify-end pb-20">
         <Button variant="outline" text="გაუქმება" />
         <Button variant="primary" text="დაამატე ლისტინგი" />
       </div>
