@@ -13,7 +13,7 @@ export const agents = [
     email: "nino@redberry.ge",
     phone: "555555556",
     avatar:
-      "https://api.real-estate-manager.redberryinternship.com/images/sample-avatar.jpg",
+      "https://img.freepik.com/free-photo/smiling-blond-woman-with-white-perfect-smile-natural-face-looking-happy-confident-camera-standing-tshirt-against-white-background_176420-54122.jpg",
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export const agents = [
     email: "eli@redberry.ge",
     phone: "555555558",
     avatar:
-      "https://api.real-estate-manager.redberryinternship.com/images/sample-avatar-3.jpg",
+      "https://img.freepik.com/free-photo/smiling-blond-woman-with-white-perfect-smile-natural-face-looking-happy-confident-camera-standing-tshirt-against-white-background_176420-54122.jpg",
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ export const agents = [
     email: "irakli@redberry.ge",
     phone: "555555559",
     avatar:
-      "https://api.real-estate-manager.redberryinternship.com/images/sample-avatar-4.jpg",
+      "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726185600&semt=ais_hybrid",
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ export const agents = [
     email: "nina@redberry.ge",
     phone: "555555560",
     avatar:
-      "https://api.real-estate-manager.redberryinternship.com/images/sample-avatar-5.jpg",
+      "https://img.freepik.com/free-photo/smiling-blond-woman-with-white-perfect-smile-natural-face-looking-happy-confident-camera-standing-tshirt-against-white-background_176420-54122.jpg",
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ export const agents = [
     email: "kote@redberry.ge",
     phone: "555555561",
     avatar:
-      "https://api.real-estate-manager.redberryinternship.com/images/sample-avatar-6.jpg",
+      "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726185600&semt=ais_hybrid",
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ export const agents = [
     email: "leon@redberry.ge",
     phone: "555555562",
     avatar:
-      "https://api.real-estate-manager.redberryinternship.com/images/sample-avatar-7.jpg",
+      "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726185600&semt=ais_hybrid",
   },
   {
     id: 9,
@@ -69,7 +69,7 @@ export const agents = [
     email: "tamar@redberry.ge",
     phone: "555555563",
     avatar:
-      "https://api.real-estate-manager.redberryinternship.com/images/sample-avatar-8.jpg",
+      "https://img.freepik.com/free-photo/smiling-blond-woman-with-white-perfect-smile-natural-face-looking-happy-confident-camera-standing-tshirt-against-white-background_176420-54122.jpg",
   },
   {
     id: 10,
@@ -77,6 +77,6 @@ export const agents = [
     email: "tornike@redberry.ge",
     phone: "555555564",
     avatar:
-      "https://api.real-estate-manager.redberryinternship.com/images/sample-avatar-9.jpg",
+      "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726185600&semt=ais_hybrid",
   },
 ];

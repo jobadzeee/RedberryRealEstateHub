@@ -9,12 +9,16 @@ import { ReactComponent as ZipCode } from "../assets/images/Locate.svg";
 import { ReactComponent as Gmail } from "../assets/images/Gmail.svg";
 import { ReactComponent as Phone } from "../assets/images/Phone.svg";
 import { ReactComponent as Back } from "../assets/images/BackArrow.svg";
+import { ReactComponent as Delete } from "../assets/images/Delete.svg";
 import { properties } from "../data/Properties";
 import { agents } from "../data/Agents";
 import Button from "../components/Button";
+import { useState } from "react";
+import Modal from "./Modal";
 
 const MappedItems = () => {
   const { id } = useParams();
+  const [isOpen, setIsOpen] = useState(false);
   const property = properties_id.find((p) => p.id === parseInt(id));
   const agent = agents.find((p) => p.id === parseInt(id));
   if (!property) {
@@ -92,10 +96,38 @@ const MappedItems = () => {
             </div>
           </div>
           <div className="pt-[30px]">
-            <Button variant="outline_gray" text="ლისტინგის წაშლა" />
+            <Button
+              variant="outline_gray"
+              onClick={() => setIsOpen(true)}
+              text="ლისტინგის წაშლა"
+            />
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        className="rounded-[10px] bg-white px-[170px] py-[58px] relative"
+        variant="blur"
+      >
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-[17.96px] right-[17.96px]"
+        >
+          <Delete className="w-5 h-5 " />
+        </button>
+        <div className="space-y-9">
+          <p className="text-[20px] text-black"> გსურთ წაშალოთ ლისტინგი?</p>
+          <div className="space-x-[15px]">
+            <Button
+              variant="outline"
+              text="გაუქმება"
+              onClick={() => setIsOpen(false)}
+            />
+            <Button variant="primary" text="დადასტურება" />
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };
