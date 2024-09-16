@@ -14,14 +14,14 @@ const AgentUpload = ({ closeModal, add }) => {
         <div className="flex gap-5">
           <div className="space-y-[5px] flex flex-col">
             <Label htmlFor="name" variant="semibold" text="სახელი *" />
-            <Input type="text" id="name" />
+            <Input type="text" variant="primary" id="name" />
             <Label htmlFor="name" variant="basic">
               <Done /> მინიმუმ ორი სიმბოლო
             </Label>
           </div>
           <div className="space-y-[5px] flex flex-col">
             <Label htmlFor="surname" variant="semibold" text="გვარი" />
-            <Input type="text" id="surname" />
+            <Input type="text" variant="primary" id="surname" />
             <Label htmlFor="surname" variant="basic">
               <Done /> მინიმუმ ორი სიმბოლო
             </Label>
@@ -30,7 +30,7 @@ const AgentUpload = ({ closeModal, add }) => {
         <div className="flex gap-5">
           <div className="space-y-[5px] flex flex-col">
             <Label htmlFor="email" variant="semibold" text="ელ-ფოსტა *" />
-            <Input type="email" id="name" />
+            <Input type="email" variant="primary" id="name" />
             <Label htmlFor="email" variant="basic">
               <Done /> გამოიყენეთ @redberry.ge ფოსტა
             </Label>
@@ -41,7 +41,7 @@ const AgentUpload = ({ closeModal, add }) => {
               variant="semibold"
               text="ტელეფონის ნომერი"
             />
-            <Input type="number" id="number" />
+            <Input type="number" variant="primary" id="number" />
             <Label htmlFor="number" variant="basic">
               <Done /> მხოლოდ რიცხვები
             </Label>

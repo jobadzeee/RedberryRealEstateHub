@@ -25,7 +25,7 @@ const Listing = () => {
           <div className="flex gap-5">
             <div className="space-y-[5px]">
               <Label text="მისამართი *" htmlFor="address" variant="semibold" />
-              <Input type="text" id="address" />
+              <Input type="text" variant="primary" id="address" />
               <Label htmlFor="address" variant="basic">
                 <Done /> მინიმუმ 2 სიმბოლო
               </Label>
@@ -36,7 +36,7 @@ const Listing = () => {
                 htmlFor="zipCode"
                 variant="semibold"
               />
-              <Input type="number" id="zipCode" />
+              <Input type="number" variant="primary" id="zipCode" />
               <Label htmlFor="zipCode" variant="basic">
                 <Done /> მხოლოდ რიცხვები
               </Label>
@@ -52,14 +52,14 @@ const Listing = () => {
           <div className="flex gap-5">
             <div className="space-y-[5px]">
               <Label text="ფასი" htmlFor="price" variant="semibold" />
-              <Input type="number" id="price" />
-              <Label htmlFor="price" variant="basic">
+              <Input type="number" variant="primary" id="price" />
+              <Label htmlFor="price" variant="primary" variant="basic">
                 <Done /> მხოლოდ რიცხვები
               </Label>
             </div>
             <div className="space-y-[5px]">
               <Label text="ფართობი" htmlFor="area" variant="semibold" />
-              <Input type="number" id="area" />
+              <Input type="number" variant="primary" id="area" />
               <Label htmlFor="area" variant="basic">
                 <Done /> მხოლოდ რიცხვები
               </Label>
@@ -72,7 +72,7 @@ const Listing = () => {
                 htmlFor="area"
                 variant="semibold"
               />
-              <Input type="number" id="area" />
+              <Input type="number" variant="primary" id="area" />
               <Label htmlFor="area" variant="basic">
                 <Done /> მხოლოდ რიცხვები
               </Label>

@@ -5,43 +5,22 @@ import ListItem from "./ListItem";
 import { NavLink } from "react-router-dom";
 import AgentUpload from "./AgentUpload";
 import Modal from "./Modal";
+import DropdownMenu from "./DropdownMenu";
 
 const ItemManager = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [region, setRegion] = useState(false);
 
   const showAlert = () => {
     alert("Agent added successfully");
   };
   return (
     <div className="flex justify-between">
-      <ul className="flex space-x-6 p-[6px] rounded-[10px] border-[#DBDBDB] border-[1px]">
-        <ListItem variant="basic" onClick={() => setRegion(true)}>
-          <p>რეგიონი</p>
-          <ArrowSvg />
-          <Modal
-            isOpen={region}
-            closeModal={() => setRegion(false)}
-            variant="normal"
-            className="w-[730px] h-[299px] bg-white rounded-[10px] bg-red px-[105px] py-[87px]"
-            type="region"
-          >
-            <p>random</p>
-          </Modal>
-        </ListItem>
-        <ListItem variant="basic">
-          <p>საფასო კატეგორია</p>
-          <ArrowSvg />
-        </ListItem>
-        <ListItem variant="basic">
-          <p>ფართობი</p>
-          <ArrowSvg />
-        </ListItem>
-        <ListItem variant="basic">
-          <p>საძინებლების რაოდენობა</p>
-          <ArrowSvg />
-        </ListItem>
-      </ul>
+      <div className="flex space-x-6 p-[6px] rounded-[10px] border-[#DBDBDB] border-[1px]">
+        <DropdownMenu text="რეგიონი" type="region" />
+        <DropdownMenu text="საფასო კატეგორია" type="price" />
+        <DropdownMenu text="ფართობი" type="area" />
+        <DropdownMenu text="საძინებლების რაოდენობა" type="rooms" />
+      </div>
       <div className="space-x-4">
         <NavLink to="/Listing">
           <Button variant="primary" text="+ ლისტინგის დამატება" />
