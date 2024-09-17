@@ -8,7 +8,6 @@ const Input = ({ id, type, variant, placeholder }) => {
       "w-[155px] h-[42px] rounded-[6px] p-[10px]  border-[#808A93] border-[1px] flex justify space-between ",
   };
 
-  console.log(variant);
   return (
     <input
       type={type}

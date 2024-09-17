@@ -1,15 +1,21 @@
 import React from "react";
-import { properties } from "../data/Properties";
+import { GetEstates } from "../Api/GetEstates";
 import { ReactComponent as LocationSvg } from "../assets/images/location-marker.svg";
 import { ReactComponent as Bed } from "../assets/images/bed.svg";
 import { ReactComponent as Space } from "../assets/images/space.svg";
 import { ReactComponent as Locate } from "../assets/images/Locate.svg";
 
 const PropertyMap = () => {
-  console.log(properties);
+  const { data, isLoading, isError } = GetEstates();
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error fetching data</p>;
+
+  console.log(data);
+
   return (
     <div className="grid grid-cols-4 gap-5 pt-8 w-fulls m-auto place-items-center	">
-      {properties.map((property) => (
+      {data.map((property) => (
         <a key={property.id} href={`/PropertyDetails/${property.id}`}>
           <div
             className="transition-shadow duration-500 h-[455px] w-[384px] flex flex-col justify-center relative border-[1px] border-t-0 border-[#DBDBDB]

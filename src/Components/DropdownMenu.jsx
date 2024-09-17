@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ReactComponent as ArrowSvg } from "../assets/images/downArrow.svg";
-import { regions } from "../data/Regions";
+import { GetRegions } from "../Api/GetRegions";
 import Checkbox from "./Checkbox";
 import { useState } from "react";
 import Button from "./Button";
@@ -10,12 +10,18 @@ import Form from "./Form";
 const DropdownMenu = ({ text, type }) => {
   const [checkedRegions, setCheckedRegions] = useState({});
 
+  const { data: regions, isLoading, isError } = GetRegions();
+
   const handleCheckboxChange = (regionId) => {
     setCheckedRegions((prev) => ({
       ...prev,
       [regionId]: !prev[regionId],
     }));
   };
+  if (isLoading) return;
+  <p>Loading...</p>;
+  if (isError) return <p>Error fetching data</p>;
+
   return (
     <>
       <>

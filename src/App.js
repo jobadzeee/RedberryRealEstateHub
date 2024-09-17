@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Listing from "./pages/Listing";
 import Header from "./components/Header";
 import PropertyDetails from "./pages/PropertyDetails";
+import { QueryClient } from "@tanstack/react-query";
 
 const App = () => {
   return (

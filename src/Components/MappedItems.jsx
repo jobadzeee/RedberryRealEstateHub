@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { properties_id } from "../data/RealEstates";
 import ShortDate from "../components/ShortDateConverter";
 import ListItem from "../components/ListItem";
 import { ReactComponent as Location } from "../assets/images/location-marker.svg";
@@ -10,20 +9,30 @@ import { ReactComponent as Gmail } from "../assets/images/Gmail.svg";
 import { ReactComponent as Phone } from "../assets/images/Phone.svg";
 import { ReactComponent as Back } from "../assets/images/BackArrow.svg";
 import { ReactComponent as Delete } from "../assets/images/Delete.svg";
-import { properties } from "../data/Properties";
-import { agents } from "../data/Agents";
+import { GetDetails } from "../Api/GetPropertyDetails";
 import Button from "../components/Button";
 import { useState } from "react";
 import Modal from "./Modal";
+import { GetAgents } from "../Api/GetAgents";
 
 const MappedItems = () => {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
-  const property = properties_id.find((p) => p.id === parseInt(id));
-  const agent = agents.find((p) => p.id === parseInt(id));
-  if (!property) {
-    return <div className="text-red-700">Property not found</div>;
-  }
+  const {
+    data: property,
+    isLoading: propertyLoading,
+    isError: propertyError,
+  } = GetDetails(id);
+  const {
+    data: agents,
+    isLoading: agentLoading,
+    isError: agentError,
+  } = GetAgents(id);
+
+  const agent = agents?.[0];
+
+  if (propertyLoading || agentLoading) return <p>Loading...</p>;
+  if (propertyError || agentError) return <p>Error fetching data</p>;
 
   console.log(agent);
 
@@ -86,10 +95,10 @@ const MappedItems = () => {
                 </div>
                 <ul>
                   <ListItem variant="gray_mini">
-                    <Gmail /> {agent.email}
+                    <Gmail /> {agent.email ? agent.email : "No Gmail available"}
                   </ListItem>
                   <ListItem variant="gray_mini">
-                    <Phone /> {agent.phone}
+                    <Phone /> {agent.phone ? agent.phone : "No Phone available"}
                   </ListItem>
                 </ul>
               </div>
