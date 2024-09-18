@@ -4,12 +4,13 @@ import { ReactComponent as LocationSvg } from "../assets/images/location-marker.
 import { ReactComponent as Bed } from "../assets/images/bed.svg";
 import { ReactComponent as Space } from "../assets/images/space.svg";
 import { ReactComponent as Locate } from "../assets/images/Locate.svg";
+import Loader from "./Loader";
 
 const PropertyMap = () => {
   const { data, isLoading, isError } = GetEstates();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error fetching data</p>;
+  if (isLoading) return <Loader />;
+  if (isError) return <Loader />;
 
   console.log(data);
 

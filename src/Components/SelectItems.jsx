@@ -28,7 +28,9 @@ const SelectItems = ({ header, data }) => {
                   : "rounded-[6px]"
               }`}
             >
-              <span className="block truncate">{selected.name}</span>
+              <span className="block truncate">
+                {selected.name} {selected.surname}
+              </span>
               <span className="pointer-events-none inset-y-0 right-0 flex items-center pr-2">
                 {open ? (
                   <UpArrow aria-hidden="true" />
@@ -61,7 +63,7 @@ const SelectItems = ({ header, data }) => {
                             selected ? "font-medium" : "font-normal"
                           }`}
                         >
-                          {item.name}
+                          {item.name} {item.surname}
                         </span>
                         {selected ? (
                           <span className="relative inset-y-0 right-2 flex items-center pl-3 text-black">

@@ -14,6 +14,7 @@ import Button from "../components/Button";
 import { useState } from "react";
 import Modal from "./Modal";
 import { GetAgents } from "../Api/GetAgents";
+import Loader from "./Loader";
 
 const MappedItems = () => {
   const { id } = useParams();
@@ -31,10 +32,10 @@ const MappedItems = () => {
 
   const agent = agents?.[0];
 
-  if (propertyLoading || agentLoading) return <p>Loading...</p>;
-  if (propertyError || agentError) return <p>Error fetching data</p>;
+  if (propertyLoading || agentLoading) return <Loader />;
+  if (propertyError || agentError) return <Loader />;
 
-  console.log(agent);
+  // console.log(agent);
 
   return (
     <>
@@ -88,7 +89,7 @@ const MappedItems = () => {
                   </div>
                   <div className="flex flex-col">
                     <span className="text-[16px] font-medium">
-                      {agent.name}
+                      {agent.name} {agent.surname}
                     </span>
                     <span className="text-[14px] text-[#676E76]">აგენტი</span>
                   </div>
