@@ -9,33 +9,35 @@ import { ReactComponent as Gmail } from "../assets/images/Gmail.svg";
 import { ReactComponent as Phone } from "../assets/images/Phone.svg";
 import { ReactComponent as Back } from "../assets/images/BackArrow.svg";
 import { ReactComponent as Delete } from "../assets/images/Delete.svg";
-import { GetDetails } from "../Api/GetPropertyDetails";
+import { GetDetails } from "../queries/GetPropertyDetails";
 import Button from "../components/Button";
 import { useState } from "react";
 import Modal from "./Modal";
-import { GetAgents } from "../Api/GetAgents";
+import { DeleteDetails } from "../queries/DeleteProperty";
 import Loader from "./Loader";
+import { useNavigate } from "react-router-dom";
 
 const MappedItems = () => {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const { mutate: deleteProperty, isLoading: isDeleting } = DeleteDetails();
+
   const {
     data: property,
     isLoading: propertyLoading,
     isError: propertyError,
   } = GetDetails(id);
-  const {
-    data: agents,
-    isLoading: agentLoading,
-    isError: agentError,
-  } = GetAgents(id);
 
-  const agent = agents?.[0];
+  if (propertyLoading) return <Loader />;
+  if (propertyError) return <Loader />;
 
-  if (propertyLoading || agentLoading) return <Loader />;
-  if (propertyError || agentError) return <Loader />;
+  console.log("Property Details:", property);
 
-  // console.log(agent);
+  const handleDelete = () => {
+    deleteProperty(id);
+    navigate("/");
+  };
 
   return (
     <>
@@ -82,24 +84,30 @@ const MappedItems = () => {
                 <div className="flex items-center gap-[14px]">
                   <div className="w-[72px] h-[72px] rounded-[100%] overflow-hidden">
                     <img
-                      src={agent.avatar}
+                      src={property.agent.avatar}
                       alt="Agent Avatar"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="flex flex-col">
                     <span className="text-[16px] font-medium">
-                      {agent.name} {agent.surname}
+                      {property.agent?.name} {property.agent?.surname}
                     </span>
                     <span className="text-[14px] text-[#676E76]">აგენტი</span>
                   </div>
                 </div>
                 <ul>
                   <ListItem variant="gray_mini">
-                    <Gmail /> {agent.email ? agent.email : "No Gmail available"}
+                    <Gmail />{" "}
+                    {property.agent?.email
+                      ? property.agent?.email
+                      : "No Gmail available"}
                   </ListItem>
                   <ListItem variant="gray_mini">
-                    <Phone /> {agent.phone ? agent.phone : "No Phone available"}
+                    <Phone />
+                    {property.agent?.phone
+                      ? property.agent?.phone
+                      : "No Phone available"}
                   </ListItem>
                 </ul>
               </div>
@@ -134,7 +142,11 @@ const MappedItems = () => {
               text="გაუქმება"
               onClick={() => setIsOpen(false)}
             />
-            <Button variant="primary" text="დადასტურება" />
+            <Button
+              variant="primary"
+              text="დადასტურება"
+              onClick={handleDelete}
+            />
           </div>
         </div>
       </Modal>

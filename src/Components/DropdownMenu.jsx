@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ReactComponent as ArrowSvg } from "../assets/images/downArrow.svg";
-import { GetRegions } from "../Api/GetRegions";
+import { GetRegions } from "../queries/GetRegions";
 import Checkbox from "./Checkbox";
 import { useState } from "react";
 import Button from "./Button";

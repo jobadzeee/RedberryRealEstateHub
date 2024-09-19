@@ -1,6 +1,14 @@
 import React from "react";
 
-const Input = ({ id, type, variant, placeholder }) => {
+const Input = ({
+  id,
+  type,
+  variant,
+  placeholder,
+  register,
+  name,
+  required,
+}) => {
   const styles = {
     primary:
       "w-[387px] rounded-[6px] p-[10px] h-[42px] border-[#808A93] border-[1px]",
@@ -14,6 +22,7 @@ const Input = ({ id, type, variant, placeholder }) => {
       id={id}
       className={styles[variant]}
       placeholder={placeholder}
+      {...(register ? register(name, { required: required }) : {})}
     />
   );
 };

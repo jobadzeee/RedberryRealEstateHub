@@ -1,5 +1,5 @@
 import React from "react";
-import { GetEstates } from "../Api/GetEstates";
+import { GetEstates } from "../queries/GetEstates";
 import { ReactComponent as LocationSvg } from "../assets/images/location-marker.svg";
 import { ReactComponent as Bed } from "../assets/images/bed.svg";
 import { ReactComponent as Space } from "../assets/images/space.svg";
@@ -15,17 +15,17 @@ const PropertyMap = () => {
   console.log(data);
 
   return (
-    <div className="grid grid-cols-4 gap-5 pt-8 w-fulls m-auto place-items-center	">
+    <div className="grid grid-cols-4 gap-5 pt-8 w-full m-auto place-items-center	">
       {data.map((property) => (
         <a key={property.id} href={`/PropertyDetails/${property.id}`}>
           <div
-            className="transition-shadow duration-500 h-[455px] w-[384px] flex flex-col justify-center relative border-[1px] border-t-0 border-[#DBDBDB]
+            className="transition-shadow duration-500 w-[384px] flex flex-col justify-center relative border-[1px] border-t-0 border-[#DBDBDB]
           rounded-[14px] hover:shadow-custom"
           >
             <img
               src={property.image}
               alt={`Property ${property.id}`}
-              className="h-[307px] w-full rounded-b-none  rounded-[14px]"
+              className="h-[307px] w-[384px] rounded-b-none  rounded-[14px]"
             />
             <div className="absolute text-white text-[12px] font-semibold text-center rounded-[15px] bg-[#02152680] w-[90px] p-[6px] left-[23px] top-[23px]">
               {property.is_rental === 0 ? "იყიდება" : "ქირავდება"}

@@ -1,11 +1,9 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import { ReactComponent as Done } from "../assets/images/done.svg";
-import { ReactComponent as Plus } from "../assets/images/plus-circle.svg";
-import { PostEstates } from "../Api/PostEstates";
-import { GetCities } from "../Api/GetCities";
-import { GetRegions } from "../Api/GetRegions";
-import { GetAgents } from "../Api/GetAgents";
+import { PostEstates } from "../queries/PostEstates";
+import { GetCities } from "../queries/GetCities";
+import { GetRegions } from "../queries/GetRegions";
+import { GetAgents } from "../queries/GetAgents";
 import Form from "../components/Form";
 import Input from "../components/Input";
 import Label from "../components/Label";
@@ -14,13 +12,33 @@ import TextArea from "../components/TextArea";
 import Button from "../components/Button";
 import SelectItem from "../components/SelectItems";
 import Loader from "../components/Loader";
+import { useForm } from "react-hook-form";
+import ImageUploader from "../components/ImageUploader";
+import { useNavigate } from "react-router-dom";
 
 const Listing = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
+  const onSubmit = async (data) => {
+    navigate("/");
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+
+    try {
+      mutate(formData);
+      console.log("Listing submitted successfully");
+    } catch (error) {
+      console.error("Error submitting listing:", error);
+    }
+  };
+
   const { mutate } = PostEstates();
   const {
     data: regions,
@@ -38,10 +56,6 @@ const Listing = () => {
     isError: agentsError,
   } = GetAgents();
 
-  const onSubmit = (data) => {
-    mutate(data);
-  };
-
   if (regionsLoading || citiesLoading || agentsLoading) return <Loader />;
   if (regionsError || citiesError || agentsError) return <Loader />;
 
@@ -54,9 +68,8 @@ const Listing = () => {
       >
         <div className="space-y-2 w-[266px]">
           <p className="text-[16px] font-semibold">გარიგების ტიპი</p>
-          <RadioButton {...register("dealType")} />
+          <RadioButton control={control} />
         </div>
-
         <div className="space-y-5">
           <p className="text-[16px] font-semibold">მდებარეობა</p>
           <div className="flex gap-5">
@@ -66,17 +79,17 @@ const Listing = () => {
                 type="text"
                 variant="primary"
                 id="address"
-                {...register("address", { required: true, minLength: 2 })}
+                register={register}
+                name="address"
+                required={true}
               />
-              {errors.address && <span>მინიმუმ 2 სიმბოლო</span>}
               <Label htmlFor="address" variant="basic">
                 <Done /> მინიმუმ 2 სიმბოლო
               </Label>
             </div>
-
             <div className="space-y-[5px]">
               <Label
-                text="საფოსტო ინდექსი *"
+                text=" საფოსტო ინდექსი *"
                 htmlFor="zipCode"
                 variant="semibold"
               />
@@ -84,25 +97,30 @@ const Listing = () => {
                 type="number"
                 variant="primary"
                 id="zipCode"
-                {...register("zipCode", { required: true })}
+                register={register}
+                name="zip_code"
+                required={true}
               />
-              {errors.zipCode && <span>მხოლოდ რიცხვები</span>}
               <Label htmlFor="zipCode" variant="basic">
                 <Done /> მხოლოდ რიცხვები
               </Label>
             </div>
           </div>
-
           <div className="flex gap-5">
             <SelectItem
               header="რეგიონი"
               data={regions}
-              {...register("region")}
+              control={control}
+              name="region_id"
             />
-            <SelectItem header="ქალაქი" data={cities} {...register("city")} />
+            <SelectItem
+              header="ქალაქი"
+              control={control}
+              name="city_id"
+              data={cities}
+            />
           </div>
         </div>
-
         <div className="space-y-5">
           <p className="text-[16px] font-semibold">ბინის დეტალები</p>
           <div className="flex gap-5">
@@ -112,29 +130,29 @@ const Listing = () => {
                 type="number"
                 variant="primary"
                 id="price"
-                {...register("price", { required: true })}
+                register={register}
+                name="price"
+                required={true}
               />
-              {errors.price && <span>მხოლოდ რიცხვები</span>}
               <Label htmlFor="price" variant="basic">
                 <Done /> მხოლოდ რიცხვები
               </Label>
             </div>
-
             <div className="space-y-[5px]">
               <Label text="ფართობი" htmlFor="area" variant="semibold" />
               <Input
                 type="number"
                 variant="primary"
                 id="area"
-                {...register("area", { required: true })}
+                register={register}
+                name="area"
+                required={true}
               />
-              {errors.area && <span>მხოლოდ რიცხვები</span>}
               <Label htmlFor="area" variant="basic">
                 <Done /> მხოლოდ რიცხვები
               </Label>
             </div>
           </div>
-
           <div className="flex gap-5">
             <div className="space-y-[5px]">
               <Label
@@ -146,9 +164,10 @@ const Listing = () => {
                 type="number"
                 variant="primary"
                 id="rooms"
-                {...register("rooms", { required: true })}
+                register={register}
+                name="bedrooms"
+                required={true}
               />
-              {errors.rooms && <span>მხოლოდ რიცხვები</span>}
               <Label htmlFor="rooms" variant="basic">
                 <Done /> მხოლოდ რიცხვები
               </Label>
@@ -156,54 +175,42 @@ const Listing = () => {
           </div>
 
           <div className="space-y-[5px]">
-            <Label text="აღწერა" htmlFor="textarea" variant="semibold" />
+            <Label text="აღწერა" htmlFor="description" variant="semibold" />
             <TextArea
-              id="textarea"
-              {...register("description", { required: true, minLength: 5 })}
+              id="description"
+              register={register}
+              name="description"
+              required={true}
             />
-            {errors.description && <span>მინიმუმ 5 სიტყვა</span>}
-            <Label htmlFor="textarea" variant="basic">
+            <Label htmlFor="description" variant="basic">
               <Done /> მინიმუმ 5 სიტყვა
             </Label>
           </div>
-
           <div className="space-y-[5px]">
             <Label
               text="ატვირთეთ ფოტო *"
               htmlFor="file-upload"
               variant="semibold"
             />
-            <input
-              type="file"
-              id="file-upload"
-              className="hidden"
-              {...register("file", { required: true })}
-            />
-            <label
-              htmlFor="file-upload"
-              className="w-full flex justify-center items-center rounded-[6px] p-[10px] h-[135px] border-[#808A93] border-[1px]"
-            >
-              <Plus />
-            </label>
+            <ImageUploader control={control} errors={errors} name="image" />
           </div>
         </div>
-
         <div className="space-y-5">
           <p className="text-[16px] font-semibold">აგენტი</p>
           <div className="space-y-[5px]">
-            <SelectItem data={agents} {...register("agent")} />
+            <SelectItem
+              data={agents}
+              control={control}
+              name="agent_id"
+              header="აგენტი"
+            />
           </div>
         </div>
+        <div className="space-x-4 w-full flex justify-end pb-20">
+          <Button variant="outline" text="გაუქმება" />
+          <Button type="submit" variant="primary" text="დაამატე ლისტინგი" />
+        </div>
       </Form>
-
-      <div className="space-x-4 w-full flex justify-end pb-20">
-        <Button variant="outline" text="გაუქმება" />
-        <Button
-          variant="primary"
-          text="დაამატე ლისტინგი"
-          onClick={handleSubmit(onSubmit)}
-        />
-      </div>
     </div>
   );
 };

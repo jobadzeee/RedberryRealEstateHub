@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ variant, text, onClick }) => {
+const Button = ({ variant, text, onClick, type }) => {
   const styles = {
     primary:
       "bg-[#F93B1D] transition-all duration-300 rounded-[10px] font-semibold text-white py-[10px] px-4 hover:bg-[#DF3014]",
@@ -13,7 +13,7 @@ const Button = ({ variant, text, onClick }) => {
   };
 
   return (
-    <button onClick={onClick} className={styles[variant]}>
+    <button onClick={onClick} className={styles[variant]} type={type}>
       {text || "Click Me"}
     </button>
   );
