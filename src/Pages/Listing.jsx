@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as Done } from "../assets/images/done.svg";
 import { PostEstates } from "../queries/PostEstates";
 import { GetCities } from "../queries/GetCities";
@@ -18,9 +18,11 @@ import { useNavigate } from "react-router-dom";
 
 const Listing = () => {
   const navigate = useNavigate();
+  const [selectedRegion, setSelectedRegion] = useState(null);
   const {
     register,
     handleSubmit,
+    watch,
     control,
     formState: { errors },
   } = useForm();
@@ -38,6 +40,8 @@ const Listing = () => {
       console.error("Error submitting listing:", error);
     }
   };
+
+  const watchRegion = watch("region_id");
 
   const { mutate } = PostEstates();
   const {
@@ -58,6 +62,10 @@ const Listing = () => {
 
   if (regionsLoading || citiesLoading || agentsLoading) return <Loader />;
   if (regionsError || citiesError || agentsError) return <Loader />;
+
+  const filteredCities = cities
+    ? cities.filter((city) => city.region_id === parseInt(watchRegion))
+    : [];
 
   return (
     <div className="mx-auto max-w-[790px]">
@@ -112,13 +120,16 @@ const Listing = () => {
               data={regions}
               control={control}
               name="region_id"
+              onChange={(value) => setSelectedRegion(value)}
             />
-            <SelectItem
-              header="ქალაქი"
-              control={control}
-              name="city_id"
-              data={cities}
-            />
+            {watchRegion && (
+              <SelectItem
+                header="ქალაქი"
+                control={control}
+                name="city_id"
+                data={filteredCities}
+              />
+            )}
           </div>
         </div>
         <div className="space-y-5">

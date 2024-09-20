@@ -6,6 +6,16 @@ import { ReactComponent as UpArrow } from "../assets/images/upArrow.svg";
 import { Controller } from "react-hook-form";
 
 const SelectItems = ({ control, name, header, data }) => {
+  const getDisplayValue = (value) => {
+    if (!value) return "აირჩიე";
+    const selectedItem = data.find((item) => item.id === value);
+    if (!selectedItem) return "აირჩიე";
+    return (
+      `${selectedItem.name || ""} ${selectedItem.surname || ""}`.trim() ||
+      "აირჩიე"
+    );
+  };
+
   return (
     <div className="space-y-[5px]">
       <p className="flex items-center gap-2 text-[14px] font-semibold">
@@ -14,7 +24,7 @@ const SelectItems = ({ control, name, header, data }) => {
       <Controller
         name={name}
         control={control}
-        defaultValue={data[0]?.id}
+        defaultValue=""
         render={({ field: { value, onChange } }) => (
           <Listbox value={value} onChange={(id) => onChange(id)}>
             {({ open }) => (
@@ -27,8 +37,7 @@ const SelectItems = ({ control, name, header, data }) => {
                   }`}
                 >
                   <span className="block truncate">
-                    {data.find((item) => item.id === value)?.name}{" "}
-                    {data.find((item) => item.id === value)?.surname}
+                    {getDisplayValue(value)}
                   </span>
                   <span className="pointer-events-none inset-y-0 right-0 flex items-center pr-2">
                     {open ? (
@@ -62,7 +71,9 @@ const SelectItems = ({ control, name, header, data }) => {
                                 selected ? "font-medium" : "font-normal"
                               }`}
                             >
-                              {item.name} {item.surname}
+                              {`${item.name || ""} ${
+                                item.surname || ""
+                              }`.trim() || "N/A"}
                             </span>
                             {selected ? (
                               <span className="relative inset-y-0 right-2 flex items-center pl-3 text-black">
