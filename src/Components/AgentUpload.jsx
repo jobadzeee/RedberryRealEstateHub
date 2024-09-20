@@ -14,6 +14,7 @@ const AgentUpload = ({ closeModal }) => {
     register,
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm();
 
@@ -33,6 +34,11 @@ const AgentUpload = ({ closeModal }) => {
     }
   };
 
+  const nameValue = watch("name");
+  const surnameValue = watch("surname");
+  const emailValue = watch("email");
+  const phoneValue = watch("phone");
+
   return (
     <>
       <h2 className="text-[32px] text-center font-bold">აგენტის დამატება</h2>
@@ -49,9 +55,27 @@ const AgentUpload = ({ closeModal }) => {
               id="name"
               register={register}
               name="name"
-              required={true}
+              required="required"
+              errors={errors}
+              validation={{
+                minLength: {
+                  value: 2,
+                },
+                maxLength: {
+                  value: 14,
+                },
+                pattern: {
+                  value: /^[ა-ჰ,.]+$/,
+                },
+              }}
             />
-            <Label htmlFor="name" variant="basic">
+            <Label
+              htmlFor="name"
+              variant="basic"
+              value={nameValue}
+              errors={errors}
+              name="name"
+            >
               <Done /> მინიმუმ ორი სიმბოლო
             </Label>
           </div>
@@ -63,9 +87,27 @@ const AgentUpload = ({ closeModal }) => {
               id="surname"
               register={register}
               name="surname"
-              required={true}
+              required="required"
+              errors={errors}
+              validation={{
+                minLength: {
+                  value: 2,
+                },
+                maxLength: {
+                  value: 14,
+                },
+                pattern: {
+                  value: /^[ა-ჰ,.]+$/,
+                },
+              }}
             />
-            <Label htmlFor="surname" variant="basic">
+            <Label
+              htmlFor="surname"
+              variant="basic"
+              value={surnameValue}
+              errors={errors}
+              name="surname"
+            >
               <Done /> მინიმუმ ორი სიმბოლო
             </Label>
           </div>
@@ -78,10 +120,21 @@ const AgentUpload = ({ closeModal }) => {
               variant="primary"
               id="email"
               register={register}
+              errors={errors}
               name="email"
-              required={true}
+              validation={{
+                validate: (value) => {
+                  return value.endsWith("@redberry.ge");
+                },
+              }}
             />
-            <Label htmlFor="email" variant="basic">
+            <Label
+              htmlFor="email"
+              variant="basic"
+              value={emailValue}
+              name="email"
+              errors={errors}
+            >
               <Done /> გამოიყენეთ @redberry.ge ფოსტა
             </Label>
           </div>
@@ -91,11 +144,27 @@ const AgentUpload = ({ closeModal }) => {
               type="number"
               variant="primary"
               id="phone"
+              errors={errors}
               register={register}
               name="phone"
-              required={true}
+              required="required"
+              validation={{
+                validate: (value) => {
+                  const isValidPhone =
+                    /^\d{9}$/.test(value) && value.startsWith("5");
+                  return (
+                    isValidPhone || "Number must be 9 digits and start with 5."
+                  );
+                },
+              }}
             />
-            <Label htmlFor="phone" variant="basic">
+            <Label
+              htmlFor="phone"
+              variant="basic"
+              value={phoneValue}
+              errors={errors}
+              name="phone"
+            >
               <Done /> მხოლოდ რიცხვები
             </Label>
           </div>

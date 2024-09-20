@@ -85,7 +85,8 @@ const ImageUploader = ({ control, errors, name }) => {
         )}
         rules={{ required: true }}
       />
-      {errors.image && <p className="text-red-500">File is required</p>}
+      {errors.image && <p className="text-red-500">ფოტო აუცილებელია</p>}
+      {errors.avatar && <p className="text-red-500">ფოტო აუცილებელია</p>}
     </div>
   );
 };
