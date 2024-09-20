@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 const Listing = () => {
   const navigate = useNavigate();
-  const [selectedRegion, setSelectedRegion] = useState(null);
+  const [setSelectedRegion] = useState(null);
   const {
     register,
     handleSubmit,
