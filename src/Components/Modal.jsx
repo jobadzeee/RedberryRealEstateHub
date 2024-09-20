@@ -1,4 +1,4 @@
-import { Dialog, DialogPanel } from "@headlessui/react";
+import { Dialog } from "@headlessui/react";
 
 const Modal = ({
   isOpen,
@@ -20,14 +20,14 @@ const Modal = ({
       {type === "default" && (
         <Dialog open={isOpen} onClose={closeModal} className="relative z-50">
           <div className={styles[variant]}>
-            <DialogPanel className={className}>{children}</DialogPanel>
+            <Dialog.Panel className={className}>{children}</Dialog.Panel>
           </div>
         </Dialog>
       )}
       {type === "region" && (
         <Dialog open={isOpen} onClose={closeModal} className="relative z-50">
           <div className={styles[variant]}>
-            <DialogPanel className={className}>{children}</DialogPanel>
+            <Dialog.Panel className={className}>{children}</Dialog.Panel>
           </div>
         </Dialog>
       )}

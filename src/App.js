@@ -1,9 +1,9 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Listing from "./pages/Listing";
-import Header from "./components/Header";
-import PropertyDetails from "./pages/PropertyDetails";
+import Home from "../src/pages/Home";
+import Listing from "../src/pages/Listing";
+import Header from "../src/components/Header";
+import PropertyDetails from "../src/pages/PropertyDetails";
 
 const App = () => {
   return (
