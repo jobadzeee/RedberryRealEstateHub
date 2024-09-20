@@ -1,3 +1,4 @@
+import React from "react";
 import { Menu, MenuButton, MenuItems } from "@headlessui/react";
 import { ReactComponent as ArrowSvg } from "../assets/images/downArrow.svg";
 import { GetRegions } from "../queries/GetRegions";
@@ -18,8 +19,7 @@ const DropdownMenu = ({ text, type }) => {
       [regionId]: !prev[regionId],
     }));
   };
-  if (isLoading) return;
-  <p>Loading...</p>;
+  if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error fetching data</p>;
 
   return (
