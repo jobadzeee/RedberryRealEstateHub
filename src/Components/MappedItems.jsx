@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import ShortDate from "../components/ShortDateConverter";
 import ListItem from "../components/ListItem";
 import { ReactComponent as Location } from "../assets/images/location-marker.svg";
@@ -11,11 +12,10 @@ import { ReactComponent as Back } from "../assets/images/BackArrow.svg";
 import { ReactComponent as Delete } from "../assets/images/Delete.svg";
 import { GetDetails } from "../queries/GetPropertyDetails";
 import Button from "../components/Button";
-import { useState } from "react";
 import Modal from "./Modal";
 import { DeleteDetails } from "../queries/DeleteProperty";
 import Loader from "./Loader";
-import { useNavigate } from "react-router-dom";
+import SwiperComponent from "../components/Swiper";
 
 const MappedItems = () => {
   const { id } = useParams();
@@ -30,9 +30,8 @@ const MappedItems = () => {
   } = GetDetails(id);
 
   if (propertyLoading) return <Loader />;
-  if (propertyError) return <Loader />;
-
-  console.log("Property Details:", property);
+  if (propertyError || !property) return <Loader />;
+  const regionId = property.city.region.id;
 
   const handleDelete = () => {
     deleteProperty(id);
@@ -122,6 +121,7 @@ const MappedItems = () => {
           </div>
         </div>
       </div>
+
       <Modal
         isOpen={isOpen}
         closeModal={() => setIsOpen(false)}
@@ -150,6 +150,7 @@ const MappedItems = () => {
           </div>
         </div>
       </Modal>
+      <SwiperComponent regionId={regionId} />
     </>
   );
 };
