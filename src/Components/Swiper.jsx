@@ -37,12 +37,12 @@ const SwiperComponent = ({ regionId }) => {
         }}
       >
         <div className="flex justify-between items-center">
-          <a ref={prevRef} href="#">
+          <button ref={prevRef} href="#">
             <BackArrow />
-          </a>
-          <a ref={nextRef} href="#">
+          </button>
+          <button ref={nextRef} href="#">
             <NextArrow />
-          </a>
+          </button>
         </div>
         {filteredData.map((property) => (
           <SwiperSlide key={property.id}>

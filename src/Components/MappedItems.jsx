@@ -21,7 +21,7 @@ const MappedItems = () => {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const { mutate: deleteProperty, isLoading: isDeleting } = DeleteDetails();
+  const { mutate: deleteProperty } = DeleteDetails();
 
   const {
     data: property,

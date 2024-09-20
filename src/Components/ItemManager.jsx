@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { ReactComponent as ArrowSvg } from "../assets/images/downArrow.svg";
 import Button from "./Button";
-import ListItem from "./ListItem";
 import { NavLink } from "react-router-dom";
 import AgentUpload from "./AgentUpload";
 import Modal from "./Modal";
