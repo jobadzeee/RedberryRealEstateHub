@@ -1,7 +1,7 @@
 import React from "react";
-import ItemManager from "../components/ItemManager";
-import FilterControls from "../components/FilterContols";
-import PropertyMap from "../components/PropertyMap";
+import ItemManager from "../Components/ItemManager";
+import FilterControls from "../Components/FilterContols";
+import PropertyMap from "../Components/PropertyMap";
 
 const Home = () => {
   return (

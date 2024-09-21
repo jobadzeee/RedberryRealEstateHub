@@ -1,5 +1,5 @@
 import React from "react";
-import MappedItems from "../components/MappedItems";
+import MappedItems from "../Components/MappedItems";
 
 const PropertyDetails = () => {
   return (
