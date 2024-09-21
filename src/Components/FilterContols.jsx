@@ -7,8 +7,8 @@ const FilterContols = ({ region, price, area, bedrooms, handleReset }) => {
   const { data: regions } = GetRegions();
 
   const reset = () => {
-   handleReset()
-  }
+    handleReset();
+  };
 
   return (
     <ul className="flex pt-4 space-x-2 font-firaGo font-normal">
@@ -17,10 +17,7 @@ const FilterContols = ({ region, price, area, bedrooms, handleReset }) => {
           const foundRegion = regions.find((v) => v.id === e);
           return foundRegion ? (
             <ListItem variant="rounded" key={e}>
-              <p>{foundRegion.name}</p>  
-              {" "}
-                
-              <Xbtn/>
+              <p>{foundRegion.name}</p> <Xbtn />
             </ListItem>
           ) : null;
         })}
@@ -50,8 +47,11 @@ const FilterContols = ({ region, price, area, bedrooms, handleReset }) => {
             );
           }
         })}
-      {(price || bedrooms || area || region) &&
-       ( <button className="flex items-center gap-1" onClick={reset}>გასუფთავება</button>)}
+      {(price || bedrooms || area || region) && (
+        <button className="flex items-center gap-1" onClick={reset}>
+          გასუფთავება
+        </button>
+      )}
     </ul>
   );
 };
