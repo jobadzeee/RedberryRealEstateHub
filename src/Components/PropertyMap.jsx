@@ -1,12 +1,14 @@
 import React from "react";
 import { GetEstates } from "../queries/GetEstates";
 import Loader from "./Loader";
+import ErrorMessage from "./Error";
 import PropertyCard from "./PropertyCard";
 
 const PropertyMap = ({ region, price, area, bedrooms}) => {
   let { data, isLoading, isError } = GetEstates();
 
-  if (isLoading || isError) return <Loader />;
+  if (isLoading) return <Loader />;
+  if (isError) return <ErrorMessage />
 
   let filteredData = data;
 
@@ -41,7 +43,7 @@ const PropertyMap = ({ region, price, area, bedrooms}) => {
     });
   }
 
-  console.log("Filtered Data:", filteredData);
+
 
   if (filteredData.length === 0) {
     return <p className="font-firaGo text-[20px] pt-8 text-[#021526CC]">აღნიშნული მონაცემებით განცხადება არ იძებნება</p>;

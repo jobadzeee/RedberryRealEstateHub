@@ -13,7 +13,7 @@ const Modal = ({
     normal:
       "bg-transparent  fixed inset-0 flex w-screen items-center justify-center p-4",
   };
-  console.log(isOpen);
+
 
   return (
     <>

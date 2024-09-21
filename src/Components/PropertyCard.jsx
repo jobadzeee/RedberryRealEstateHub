@@ -20,7 +20,7 @@ const PropertyCard = ({ property }) => {
       </div>
       <div className="px-[25px] py-[22px] space-y-5">
         <div>
-          <p className="font-bold font-firaGo text-[28px]">{property.price} ₾</p>
+          <p className="font-bold font-firaGo text-[28px]">{property.price.toLocaleString()} ₾</p>
           <div className="flex items-center">
             <LocationSvg />
             <p className="text-[#021526B2] font-firaGo font-normal text-lg">

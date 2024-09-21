@@ -24,7 +24,7 @@ const ItemManager = ({regionChangeEmit, priceChangeEmit, areaChangeEmit, bedroom
     bedroomsChangeEmit(value)
   }
 
-  console.log(allReset);
+
   
 
   const showAlert = () => {

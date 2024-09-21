@@ -15,7 +15,7 @@ const ImageUploader = ({ control, errors, name }) => {
       setImagePreview(imageUrl);
       setHasImage(true);
       onChange(file);
-      console.log(file);
+
     }
   };
 

@@ -19,7 +19,7 @@ const AgentUpload = ({ closeModal }) => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+
     const formData = new FormData();
     Object.keys(data).forEach((key) => {
       formData.append(key, data[key]);
@@ -27,7 +27,6 @@ const AgentUpload = ({ closeModal }) => {
 
     try {
       mutate(formData);
-      console.log("Listing submitted successfully");
       closeModal();
     } catch (error) {
       console.error("Error submitting listing:", error);

@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import React, { useRef } from "react";
 import { GetEstates } from "../queries/GetEstates";
 import Loader from "./Loader";
+import ErrorMessage from "./Error";
 import PropertyCard from "./PropertyCard";
 import "swiper/css/bundle";
 import { Navigation } from "swiper/modules";
@@ -14,7 +15,7 @@ const SwiperComponent = ({ regionId }) => {
   const nextRef = useRef(null);
 
   if (isLoading) return <Loader />;
-  if (isError) return <Loader />;
+  if (isError) return <ErrorMessage />;
 
   const filteredData = data.filter(
     (property) => property.city.region.id === regionId

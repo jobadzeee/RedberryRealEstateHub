@@ -12,6 +12,7 @@ import { ReactComponent as Back } from "../assets/images/BackArrow.svg";
 import { ReactComponent as Delete } from "../assets/images/Delete.svg";
 import { GetDetails } from "../queries/GetPropertyDetails";
 import Button from "../Components/Button";
+import ErrorMessage from "../Components/Error";
 import Modal from "../Components/Modal";
 import { DeleteDetails } from "../queries/DeleteProperty";
 import Loader from "../Components/Loader";
@@ -30,7 +31,7 @@ const MappedItems = () => {
   } = GetDetails(id);
 
   if (propertyLoading) return <Loader />;
-  if (propertyError || !property) return <Loader />;
+  if (propertyError || !property) return <ErrorMessage />;
   const regionId = property.city.region.id;
 
   const handleDelete = () => {
@@ -57,7 +58,7 @@ const MappedItems = () => {
         </div>
         <div className="max-w-[500px] w-full">
           <div className="space-y-6">
-            <span className="text-[48px] font-firaGo  font-bold">{property.price} ₾</span>
+            <span className="text-[48px] font-firaGo  font-bold">{property.price.toLocaleString()} ₾</span>
             <ul className="space-y-4">
               <ListItem variant="gray">
                 <Location /> {property.city.name}, {property.address}
@@ -104,8 +105,8 @@ const MappedItems = () => {
                   </ListItem>
                   <ListItem variant="gray_mini">
                     <Phone />
-                    {property.agent?.phone
-                      ? property.agent?.phone
+                    {property.agent?.phone.replace(/(\d{3})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4")
+                      ? property.agent?.phone.replace(/(\d{3})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4")
                       : "No Phone available"}
                   </ListItem>
                 </ul>

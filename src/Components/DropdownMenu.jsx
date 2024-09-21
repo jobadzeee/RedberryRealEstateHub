@@ -85,7 +85,7 @@ const DropdownMenu = ({
       maxValue: areaMaxValue,
     };
     areaChange(areas);
-    console.log(areas);
+
   };
 
   const priceSave = () => {
