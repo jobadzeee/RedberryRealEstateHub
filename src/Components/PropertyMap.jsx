@@ -3,7 +3,7 @@ import { GetEstates } from "../queries/GetEstates";
 import Loader from "./Loader";
 import PropertyCard from "./PropertyCard";
 
-const PropertyMap = ({ region, price, area, bedrooms }) => {
+const PropertyMap = ({ region, price, area, bedrooms}) => {
   let { data, isLoading, isError } = GetEstates();
 
   if (isLoading || isError) return <Loader />;

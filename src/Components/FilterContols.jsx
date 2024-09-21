@@ -3,12 +3,18 @@ import ListItem from "./ListItem";
 import { ReactComponent as Xbtn } from "../assets/images/Delete.svg";
 import { GetRegions } from "../queries/GetRegions";
 
-const FilterContols = ({ region, price, area, bedrooms, handleReset }) => {
+const FilterControls = ({ region, price, area, bedrooms, handleReset }) => {
   const { data: regions } = GetRegions();
 
   const reset = () => {
     handleReset();
   };
+
+  const hasActiveFilters = 
+    (region && region.length > 0) || 
+    (price && (price.minValue || price.maxValue)) || 
+    (area && (area.minValue || area.maxValue)) || 
+    (bedrooms && bedrooms.some(bed => bed));
 
   return (
     <ul className="flex pt-4 space-x-2 font-firaGo font-normal">
@@ -21,18 +27,18 @@ const FilterContols = ({ region, price, area, bedrooms, handleReset }) => {
             </ListItem>
           ) : null;
         })}
-      {price && (
+      {price && (price.minValue || price.maxValue) && (
         <ListItem variant="rounded">
           <p>
-            {price.minValue} - {price.maxValue} ₾
+            {price.minValue || ''} - {price.maxValue || ''} ₾
           </p>{" "}
           <Xbtn />
         </ListItem>
       )}
-      {area && (
+      {area && (area.minValue || area.maxValue) && (
         <ListItem variant="rounded">
           <p>
-            {area.minValue} - {area.maxValue} მ²
+            {area.minValue || ''} - {area.maxValue || ''} მ²
           </p>{" "}
           <Xbtn />
         </ListItem>
@@ -41,13 +47,14 @@ const FilterContols = ({ region, price, area, bedrooms, handleReset }) => {
         bedrooms.map((e, i) => {
           if (e) {
             return (
-              <ListItem variant="rounded">
+              <ListItem variant="rounded" key={i}>
                 <p>{i + 1}</p> <Xbtn />
               </ListItem>
             );
           }
+          return null;
         })}
-      {(price || bedrooms || area || region) && (
+      {hasActiveFilters && (
         <button className="flex items-center gap-1" onClick={reset}>
           გასუფთავება
         </button>
@@ -56,4 +63,4 @@ const FilterContols = ({ region, price, area, bedrooms, handleReset }) => {
   );
 };
 
-export default FilterContols;
+export default FilterControls;
