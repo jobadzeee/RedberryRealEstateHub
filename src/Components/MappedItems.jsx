@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import ShortDate from "../components/ShortDateConverter";
-import ListItem from "../components/ListItem";
+import ShortDate from "../Components/ShortDateConverter";
+import ListItem from "../Components/ListItem";
 import { ReactComponent as Location } from "../assets/images/location-marker.svg";
 import { ReactComponent as Area } from "../assets/images/space.svg";
 import { ReactComponent as Bed } from "../assets/images/bed.svg";
@@ -11,11 +11,11 @@ import { ReactComponent as Phone } from "../assets/images/Phone.svg";
 import { ReactComponent as Back } from "../assets/images/BackArrow.svg";
 import { ReactComponent as Delete } from "../assets/images/Delete.svg";
 import { GetDetails } from "../queries/GetPropertyDetails";
-import Button from "../components/Button";
-import Modal from "./Modal";
+import Button from "../Components/Button";
+import Modal from "../Components/Modal";
 import { DeleteDetails } from "../queries/DeleteProperty";
-import Loader from "./Loader";
-import SwiperComponent from "../components/Swiper";
+import Loader from "../Components/Loader";
+import SwiperComponent from "../Components/Swiper";
 
 const MappedItems = () => {
   const { id } = useParams();

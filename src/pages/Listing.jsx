@@ -1,6 +1,6 @@
 import React from "react";
-import { ReactComponent as Done } from "../Images/done.svg";
-import { DropdownMenu } from "../Components/DropdownMenu";
+import { ReactComponent as Done } from "../assets/images/done.svg";
+import  DropdownMenu  from "../Components/DropdownMenu";
 import Form from "../Components/Form";
 import Input from "../Components/Input";
 import Label from "../Components/Label";
