@@ -36,14 +36,6 @@ const SwiperComponent = ({ regionId }) => {
           swiper.params.navigation.nextEl = nextRef.current;
         }}
       >
-        <div className="flex justify-between items-center">
-          <button ref={prevRef} href="#">
-            <BackArrow />
-          </button>
-          <button ref={nextRef} href="#">
-            <NextArrow />
-          </button>
-        </div>
         {filteredData.map((property) => (
           <SwiperSlide key={property.id}>
             <a href={`/PropertyDetails/${property.id}`}>
@@ -52,6 +44,14 @@ const SwiperComponent = ({ regionId }) => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="flex justify-between items-center relative bottom-[300px]">
+          <button ref={prevRef} href="#" className="relative z-50 right-[50px]">
+            <BackArrow />
+          </button>
+          <button ref={nextRef} href="#" className="relative z-50 left-[50px]">
+            <NextArrow />
+          </button>
+        </div>
     </div>
   );
 };

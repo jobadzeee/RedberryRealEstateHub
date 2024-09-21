@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ReactComponent as Done } from "../assets/images/done.svg";
 import { PostEstates } from "../queries/PostEstates";
 import { GetCities } from "../queries/GetCities";
@@ -16,6 +16,9 @@ import { useForm } from "react-hook-form";
 import ImageUploader from "../components/ImageUploader";
 import { useNavigate } from "react-router-dom";
 
+const STORAGE_KEY = 'listingFormData';
+
+
 const Listing = () => {
   const navigate = useNavigate();
   const [setSelectedRegion] = useState(null);
@@ -25,7 +28,20 @@ const Listing = () => {
     control,
     formState: { errors },
     watch,
+    setValue,
   } = useForm();
+
+
+  useEffect(() => {
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      Object.keys(parsedData).forEach((key) => {
+        setValue(key, parsedData[key]);
+      });
+    }
+  }, [setValue]);
+
   const onSubmit = async (data) => {
     navigate("/");
     const formData = new FormData();
@@ -36,12 +52,20 @@ const Listing = () => {
     try {
       mutate(formData);
       console.log("Listing submitted successfully");
+      localStorage.removeItem(STORAGE_KEY);
     } catch (error) {
       console.error("Error submitting listing:", error);
     }
   };
 
   const watchRegion = watch("region_id");
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   const { mutate } = PostEstates();
   const {
@@ -73,6 +97,7 @@ const Listing = () => {
   const areaValue = watch("area");
   const bedroomsValue = watch("bedrooms");
   const descriptionValue = watch("description");
+
 
   return (
     <div className="mx-auto max-w-[790px]">
@@ -109,10 +134,7 @@ const Listing = () => {
                   },
                   maxLength: {
                     value: 30,
-                  },
-                  pattern: {
-                    value: /^[ა-ჰ0-9A-ZIVXLCDM,.]+$/,
-                  },
+                  }
                 }}
               />
               <Label

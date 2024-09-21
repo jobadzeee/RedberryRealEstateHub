@@ -11,6 +11,8 @@ const Input = ({
   errors,
   validation = {},
   value,
+  inputValue,
+  onChange
 }) => {
   const styles = {
     primary:
@@ -31,6 +33,8 @@ const Input = ({
       type={type}
       id={id}
       className={inputClasses}
+      value={inputValue}
+      onChange={onChange}
       placeholder={placeholder}
       {...(register ? register(name, { required, ...validation }) : { value })}
     />

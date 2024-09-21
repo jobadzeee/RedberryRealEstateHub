@@ -5,8 +5,27 @@ import AgentUpload from "./AgentUpload";
 import Modal from "./Modal";
 import DropdownMenu from "./DropdownMenu";
 
-const ItemManager = () => {
+const ItemManager = ({regionChangeEmit, priceChangeEmit, areaChangeEmit, bedroomsChangeEmit, allReset}) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const regionChange = (value) => {
+    regionChangeEmit(value)
+  }
+
+  const priceChange = (value) => {
+    priceChangeEmit(value)
+  }
+
+  const areaChange = (value) => {
+    areaChangeEmit(value)
+  }
+
+  const bedroomsChange = (value) => {
+    bedroomsChangeEmit(value)
+  }
+
+  console.log(allReset);
+  
 
   const showAlert = () => {
     alert("Agent added successfully");
@@ -14,10 +33,10 @@ const ItemManager = () => {
   return (
     <div className="flex justify-between">
       <div className="flex space-x-6 p-[6px] rounded-[10px] border-[#DBDBDB] border-[1px]">
-        <DropdownMenu text="რეგიონი" type="region" />
-        <DropdownMenu text="საფასო კატეგორია" type="price" />
-        <DropdownMenu text="ფართობი" type="area" />
-        <DropdownMenu text="საძინებლების რაოდენობა" type="rooms" />
+        <DropdownMenu text="რეგიონი" type="region" regionChange={event=>regionChange(event)} allReset={allReset} />
+        <DropdownMenu text="საფასო კატეგორია" type="price" priceChange={event=>priceChange(event)} alallReset={allReset}lReset />
+        <DropdownMenu text="ფართობი" type="area" areaChange={event=>areaChange(event)} allReset={allReset} />
+        <DropdownMenu text="საძინებლების რაოდენობა" type="rooms" checkboxChange={event=>bedroomsChange(event)} allReset={allReset} />
       </div>
       <div className="space-x-4">
         <NavLink to="/Listing">
