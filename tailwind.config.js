@@ -7,6 +7,9 @@ module.exports = {
       boxShadow: {
         custom: "5px 5px 12px 0px #02152614",
       },
+      fontFamily: {
+        'firaGo': ['Fira Go', 'sans-serif'],
+      }
     },
   },
   plugins: [],

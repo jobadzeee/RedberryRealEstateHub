@@ -22,7 +22,7 @@ const SwiperComponent = ({ regionId }) => {
 
   return (
     <div className="py-[100px] space-y-[52px] relative">
-      <h2 className="text-[32px]">ბინები მსგავს ლოკაციაზე</h2>
+      <h2 className="text-[32px] font-firaGo font-medium">ბინები მსგავს ლოკაციაზე</h2>
       <Swiper
         spaceBetween={20}
         slidesPerView={4}

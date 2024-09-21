@@ -35,12 +35,12 @@ const DropdownMenu = ({ text, type }) => {
               anchor="bottom"
               className="p-[24px] mt-4 bg-white border-[1px] space-y-[24px] border-[#DBDBDB] rounded-[10px]"
             >
-              <span className="text-[16px] font-semibold">
+              <span className="text-[16px] font-firaGo font-medium">
                 რეგიონის მიხედვით
               </span>
               <div className="grid grid-cols-3 ">
                 {regions.map((region) => (
-                  <div className="flex space-x-2 w-[180px]" key={region.id}>
+                  <div className="flex space-x-2 w-[180px] font-firaGo font-normal" key={region.id}>
                     <Checkbox
                       type="checked"
                       isChecked={checkedRegions[region.id] || false}
@@ -68,14 +68,14 @@ const DropdownMenu = ({ text, type }) => {
               anchor="bottom"
               className="p-[24px] mt-4 bg-white border-[1px] space-y-[24px] border-[#DBDBDB] rounded-[10px]"
             >
-              <span className="text-[16px] font-semibold">ფასის მიხედვით </span>
+              <span className="text-[16px] font-firaGo font-medium">ფასის მიხედვით </span>
               <Form className="space-y-6">
                 <div className="flex gap-[15px]">
                   <Input variant="secondary" placeholder="დან" />
                   <Input variant="secondary" placeholder="მდე" />
                 </div>
                 <div className="flex gap-5">
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 font-firaGo font-normal">
                     <li className="font-bold text-[14px] w-[155px] pb-2">
                       მინ. ფასი
                     </li>
@@ -115,7 +115,7 @@ const DropdownMenu = ({ text, type }) => {
               anchor="bottom"
               className="p-[24px] mt-4 bg-white border-[1px] space-y-[24px] border-[#DBDBDB] rounded-[10px]"
             >
-              <span className="text-[16px] font-semibold">
+              <span className="text-[16px] font-firaGo font-medium ">
                 ფართობის მიხედვით
               </span>
               <Form className="space-y-6">
@@ -123,7 +123,7 @@ const DropdownMenu = ({ text, type }) => {
                   <Input variant="secondary" placeholder="დან" />
                   <Input variant="secondary" placeholder="მდე" />
                 </div>
-                <div className="flex gap-5">
+                <div className="flex gap-5 font-firaGo font-normal">
                   <ul className="space-y-2">
                     <li className="font-bold text-[14px] w-[155px] pb-2">
                       მინ. მ²

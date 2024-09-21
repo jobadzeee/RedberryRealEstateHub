@@ -50,14 +50,14 @@ const MappedItems = () => {
             alt={`Property ${property.id}`}
             className="rounded-b-none w-full h-[670px] rounded-[14px]"
           />
-          <span className="w-full text-[#808A93]">
+          <span className="w-full text-[#808A93] font-firaGo font-normal">
             გამოქვეყნების თარიღი{" "}
             <ShortDate className="text-[#808A93]" date={property.created_at} />
           </span>
         </div>
         <div className="max-w-[500px] w-full">
           <div className="space-y-6">
-            <span className="text-[48px] font-bold">{property.price} ₾</span>
+            <span className="text-[48px] font-firaGo  font-bold">{property.price} ₾</span>
             <ul className="space-y-4">
               <ListItem variant="gray">
                 <Location /> {property.city.name}, {property.address}
@@ -75,13 +75,13 @@ const MappedItems = () => {
             </ul>
           </div>
           <div className="mt-10 space-y-[50px]">
-            <p className="max-h-[78px] h-full overflow-scroll text-lg text-[#808A93]">
+            <p className="max-h-[78px] h-full font-firaGo font-normal overflow-scroll text-lg text-[#808A93]">
               {property.description}
             </p>
             <div className="w-full h-[175px] border-[1px] border-[#DBDBDB] rounded-lg ">
               <div className="px-5 pt-6 space-y-4">
                 <div className="flex items-center gap-[14px]">
-                  <div className="w-[72px] h-[72px] rounded-[100%] overflow-hidden">
+                  <div className="w-[72px] h-[72px] rounded-[100%] overflow-hidden ">
                     <img
                       src={property.agent.avatar}
                       alt="Agent Avatar"
@@ -89,10 +89,10 @@ const MappedItems = () => {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[16px] font-medium">
+                    <span className="text-[16px] font-firaGo font-normal">
                       {property.agent?.name} {property.agent?.surname}
                     </span>
-                    <span className="text-[14px] text-[#676E76]">აგენტი</span>
+                    <span className="text-[14px] text-[#676E76] font-firaGo font-normal">აგენტი</span>
                   </div>
                 </div>
                 <ul>

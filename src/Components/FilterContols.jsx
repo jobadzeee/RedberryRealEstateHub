@@ -3,7 +3,7 @@ import ListItem from "./ListItem";
 
 const FilterContols = () => {
   return (
-    <ul className="flex pt-4 space-x-2">
+    <ul className="flex pt-4 space-x-2 font-firaGo font-normal">
       <ListItem variant="rounded">
         <p>თბილისი x</p>
       </ListItem>
